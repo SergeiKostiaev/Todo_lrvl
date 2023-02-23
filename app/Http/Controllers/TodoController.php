@@ -14,6 +14,9 @@ class TodoController extends Controller
      */
     public function index()
     {
+        $todos = Todo::paginate();
+
+        return view('todo.index', ['todos'=>$todos]);
         return view('todo.index',[
             'todo' => 'Todo List',
         ]);
@@ -50,10 +53,9 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
+        $todo = Todo::find($id);
 
-        return View('todo.show',[
-            'show' => 'Show',
-        ]);
+        return View('todo.show', ['todo' => $todo]);
     }
 
     /**
